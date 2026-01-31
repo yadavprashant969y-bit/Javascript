@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Icon Toggler</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5bcbc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .item-list {
+            list-style-type: none;
+            padding: 0;
+            background: rgb(236, 216, 218);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        .item-list li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #946060;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-list li:last-child {
+            border-bottom: none;
+        }
+
+        .favorite-icon {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #8dd26b;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
+
+        .favorite-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .favorite-icon.filled {
+            color: #e74c3c;
+            /* Red color for filled heart */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Favorite Items</h1>
+    <ul class="item-list">
+        <li>
+            Item 1
+            <button class="favorite-icon">&#9825;</button>
+        </li>
+        <li>
+            Item 2
+            <button class="favorite-icon">&#9825;</button>
+        </li>
+        <li>
+            Item 3
+            <button class="favorite-icon">&#9825;</button>
+        </li>
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all buttons with the class 'favorite-icon'
+            const favoriteButtons = document.querySelectorAll('.favorite-icon');
+
+            // Iterate over each button and attach a click event listener
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Toggle the 'filled' class
+                    this.classList.toggle('filled');
+
+                    // Toggle the heart symbol
+                    if (this.classList.contains('filled')) {
+                        this.innerHTML = '&#10084;'; // Filled heart
+                    } else {
+                        this.innerHTML = '&#9825;'; // Empty heart
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
