@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Telling App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .story-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            border: 5px solid transparent;
+            /* Initial border */
+            transition: border-color 0.3s ease;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #scary-btn {
+            background-color: #ee4b2b;
+        }
+
+        #funny-btn {
+            background-color: #f1be32;
+            color: #333;
+            /* Better contrast */
+        }
+
+        #adventure-btn {
+            background-color: #acd157;
+            color: #333;
+            /* Better contrast */
+        }
+
+        #result {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            min-height: 100px;
+            /* Reserve space to prevent layout shift */
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Want to hear a short story?</h1>
+    <main class="story-container">
+        <div class="btn-container">
+            <button class="btn" id="scary-btn">Scary Story</button>
+            <button class="btn" id="funny-btn">Funny Story</button>
+            <button class="btn" id="adventure-btn">Adventure Story</button>
+        </div>
+        <p id="result"></p>
+    </main>
+
+    <script>
+        // Select elements
+        const storyContainer = document.querySelector('.story-container');
+        const scaryStoryBtn = document.querySelector('#scary-btn');
+        const funnyStoryBtn = document.querySelector('#funny-btn');
+        const adventureStoryBtn = document.querySelector('#adventure-btn');
+        const resultParagraph = document.querySelector('#result');
+
+        // Story object
+        const storyObj = {
+            scary: {
+                story: "In the dark woods, a group of friends stumbled upon an old, abandoned cabin. They enter the cabin and awaken something malevolent that had been dormant for centuries.",
+                borderColor: "#ee4b2b"
+            },
+            funny: {
+                story: "During a camping trip, Mark decided to show off his culinary skills by cooking dinner over an open fire. However, his attempt caused him to burn the dinner as well as his eyebrows off.",
+                borderColor: "#f1be32"
+            },
+            adventure: {
+                story: "Lost in the heart of the Amazon rain forest, Sarah and Jake stumbled upon an ancient temple. They braved deadly traps and encountered strange wildlife, all while deciphering cryptic clues left behind by a mysterious civilization.",
+                borderColor: "#acd157"
+            }
+        };
+
+        // Function to display story
+        function displayStory(genre) {
+            // Check if the genre exists in our story object
+            if (storyObj[genre]) {
+                // Set the text content of the result paragraph
+                resultParagraph.textContent = storyObj[genre].story;
+                // Set the border color of the story container
+                storyContainer.style.borderColor = storyObj[genre].borderColor;
+            }
+        }
+
+        // Event listeners
+        scaryStoryBtn.addEventListener('click', () => {
+            displayStory("scary");
+        });
+
+        funnyStoryBtn.addEventListener('click', () => {
+            displayStory("funny");
+        });
+
+        adventureStoryBtn.addEventListener('click', () => {
+            displayStory("adventure");
+        });
+    </script>
+</body>
+
+</html>
